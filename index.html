@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>漢数字だけ置き換え</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system;
+        max-width: 720px;
+        margin: 24px auto;
+        line-height: 1.8;
+      }
+      textarea {
+        width: 100%;
+        height: 10rem;
+      }
+      .out {
+        white-space: pre-wrap;
+        background: #f7f7f7;
+        padding: 12px;
+        border-radius: 8px;
+      }
+      button {
+        padding: 8px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-right: 8px;
+        border: none;
+        transition: all 0.3s ease;
+      }
+      #go {
+        background: #b3d4fc;
+      }
+      #copyBtn {
+        margin-top: 8px;
+        background: #c7e5c1;
+      }
+      /* コピー完了時の演出 */
+      #copyBtn.copied {
+        background: #88cc88;
+        color: white;
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body>
+    <h2>文章中の漢数字 → 算用数字</h2>
+    <textarea id="src"></textarea><br />
+    <button id="go">変換</button>
+    <h3>結果</h3>
+    <div id="dst" class="out"></div>
+    <button id="copyBtn">コピー</button>
+    <script src="script.js"></script>
+    <script>
+      // コピー機能＋演出
+      const copyBtn = document.getElementById("copyBtn");
+      copyBtn.addEventListener("click", () => {
+        const text = document.getElementById("dst").textContent;
+        if (!text) {
+          alert("コピーする内容がありません");
+          return;
+        }
+        navigator.clipboard
+          .writeText(text)
+          .then(() => {
+            // 演出
+            const originalText = copyBtn.textContent;
+            copyBtn.textContent = "コピーしました";
+            copyBtn.classList.add("copied");
+
+            // 1.2秒後に元に戻す
+            setTimeout(() => {
+              copyBtn.textContent = originalText;
+              copyBtn.classList.remove("copied");
+            }, 1200);
+          })
+          .catch((err) => {
+            alert("コピーに失敗しました" + err);
+          });
+      });
+    </script>
+  </body>
+</html>
