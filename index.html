@@ -13,18 +13,20 @@
       textarea {
         width: 100%;
         height: 10rem;
+        padding: 8px;
+        border-radius: 8px;
       }
       .out {
         white-space: pre-wrap;
         background: #f7f7f7;
-        padding: 12px;
+        padding: 8px;
         border-radius: 8px;
       }
       button {
         padding: 8px 16px;
         border-radius: 8px;
         cursor: pointer;
-        margin-right: 8px;
+        margin-top: 4px;
         border: none;
         transition: all 0.3s ease;
       }
@@ -32,7 +34,7 @@
         background: #b3d4fc;
       }
       #copyBtn {
-        margin-top: 8px;
+        margin-top: 4px;
         background: #c7e5c1;
       }
       /* コピー完了時の演出 */
@@ -48,7 +50,7 @@
     <textarea id="src"></textarea><br />
     <button id="go">変換</button>
     <h3>結果</h3>
-    <div id="dst" class="out"></div>
+    <textarea id="dst" class="out"> </textarea>
     <button id="copyBtn">コピー</button>
     <script src="script.js"></script>
     <script>
